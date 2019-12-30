@@ -32,7 +32,10 @@ in the IEEE International Geoscience and Remote Sensing Symposium, 2020 (press).
 
 (1) Follow the instructions of the Jupyter Notebook 👉 run_SVM.ipynb
 
-(2) Make your processing pipeline by using the functions: calibrate.py, train.py and test.py. 
-    Proceed as follows: 
+(2) Make your processing pipeline by using the Python functions: calibrate.py, train.py and test.py. 
+    (See in the instructions in files)
+    
+Have fun!
 
+📬 For any problem, feel free to contact me at g.cavallaro@fz-juelich.de 
 
