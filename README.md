@@ -16,6 +16,7 @@ The work is a follow up of this publication:
 📃 D. Willsch, M. Willsch, H. De Raedt and K. Michielsen, “Support Vector Machines on the D-Wave Quantum Annealer'' 2019. 
 [Online]. Available:http://dx.doi.org/10.1016/j.cpc.2019.107006
 
+----------
 
 👌Everyone can make a free account to run on the D-Wave2000Q computer: 
 
