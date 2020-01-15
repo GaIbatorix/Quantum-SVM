@@ -5,7 +5,7 @@ with the SVM on the D-Wave2000Q (QA).
 
 More information can be found in the conference paper connected to this repository
 
-📜 G. Cavallaro, D. Willsch, M. Willsch, K. Milchielsen and M. Riedel,
+📜 G. Cavallaro, D. Willsch, M. Willsch, K. Michielsen and M. Riedel,
 “Approching Remote Sensing Image Classification with Ensembles of Support Vector Machines on the D-Wave Quantum Annealer” 
 in the IEEE International Geoscience and Remote Sensing Symposium, 2020 (submitted). 
 
