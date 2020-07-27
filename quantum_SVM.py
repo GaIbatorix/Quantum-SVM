@@ -90,7 +90,13 @@ def dwave_run(path_data_key,path_in):
             print(f'WARNING: variables are not correctly ordered! path={path} ordering={ordering}')
 
         try:
-            response = sampler.sample_qubo(Q, num_reads=10000) # maybe some more postprocessing can be specified here ...
+            response = sampler.sample_qubo(Q, num_reads=10000)  # NOTE: if the scale of the Qij is very different from 1, one should not use
+                                                                # the default chain_strength=1 for the embedding here because the
+                                                                # embedding would not use properly scaled strengths to tie physical qubits together
+                                                                # (This will show up in a large chain_break_fraction)
+                                                                # Instead, a great approach is to set
+                                                                #   chain_strength = r * max(abs(Qij))
+                                                                # for r = 1.0, 0.9, 0.8, ... until the best chain_strength is found.
         except ValueError as v:
             print(f' -- no embedding found, removing {pathsub} and trying less couplers')
             shutil.rmtree(pathsub)
@@ -103,7 +109,7 @@ def dwave_run(path_data_key,path_in):
     samples = np.array([''.join(map(str,sample)) for sample in response.record['sample']]) # NOTE: it would be safer to use the labeling from record.data() for the qubit variable order
     unique_samples, unique_idx, unique_counts = np.unique(samples, return_index=True, return_counts=True) # unfortunately, num_occurrences seems not to be added up after unembedding
     unique_records = response.record[unique_idx]
-    result = rfn.merge_arrays((unique_samples, unique_records['energy'], unique_counts, unique_records['chain_break_fraction']))
+    result = rfn.merge_arrays((unique_samples, unique_records['energy'], unique_counts, unique_records['chain_break_fraction']))  # see comment on chain_strength above
     result = result[np.argsort(result['f1'])]
     np.savetxt(pathsub+'result.dat', result[:MAXRESULTS], fmt='%s', delimiter='\t', header='\t'.join(response.record.dtype.names), comments='') # load with np.genfromtxt(..., dtype=['<U2000',float,int,float], names=True, encoding=None)
 
